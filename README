@@ -1,0 +1,69 @@
+TankEngine
+==========
+
+A Rails toolkit for creating applications optimized for Mobile Safari, 
+iPhone, and the iPhone touch. Based on the iUI look and feel library.
+
+Contact
+=======
+
+Contact the author at noelrappin at gmail.com
+
+
+Example
+=======
+
+This plugin uses jQuery to manage it's JavaScript needs. The jRails plugin
+(http://ennerchi.com/projects/jrails) is recommended -- it converts Rails
+Prototype/Scriptaculous helpers to jQuery.
+
+After installing the plugin, perform
+
+rake tank_engine:install
+
+to copy the public assets (images, javascript, and CSS) to the public folder.
+
+Tank engine places an iPhone layout file in app/views/layouts/application.iphone.erb.
+
+Controller Usage
+================
+
+The module ActionController::IphoneController adds support for recognizing
+Mobile Safari as the :iphone pseudo-MIME type. 
+
+In your controller (can be ApplicationController) add the line
+
+acts_as_iphone_controller
+
+By default, the following requests are redirected to the iphone format.
+
+* Requests with a user agent including "Mobile Safari". To change this 
+default, pass the option :ignore_iphone_user_agent => true to 
+acts_as_iphone_controller.
+
+* Requests which end in ".iphone". To change this default, pass the option
+:format => <YOURFORMAT> to acts_as_iphone_controller.
+
+* Requests to a subdomain "iphone". To change this default, pass the option
+:subdomain => <YOURFORMAT> to acts_as_iphone_controller.
+
+The option :test_mode => true will cause all requests to be treated as iPhone
+requests.
+
+To capture these requests, you can use :iphone as part of a respond_to block:
+
+respond_to do |format|
+  format.html # show.html.erb
+  format.xml  { render :xml => @feature }
+  format.iphone
+end
+
+The file extension for the view is .iphone.erb
+
+The module TankEngineHelper provides a number of helper methods for creating
+iPhone structures in your views.
+
+When this plugin is installed, form builders have a new helper "toggle" that
+creates an iPhone style toggle switch.
+
+Copyright (c) 2008 Noel Rappin, released under the MIT license
