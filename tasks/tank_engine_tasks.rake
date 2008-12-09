@@ -2,7 +2,7 @@ namespace :tank_engine do
 
   task :install_images => :environment do
     FileUtils.mkdir("#{RAILS_ROOT}/public/images/tank_engine")
-    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank_engine/assets/images") do
+    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank-engine/assets/images") do
       images = Dir.glob('*.png') + Dir.glob('*.gif')
       images.each do |image|
         FileUtils.copy(image, "#{RAILS_ROOT}/public/images/tank_engine")
@@ -11,19 +11,19 @@ namespace :tank_engine do
   end
   
   task :install_javascript => :environment do
-    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank_engine/assets/javascripts") do
+    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank-engine/assets/javascripts") do
       FileUtils.copy("tank_engine.js", "#{RAILS_ROOT}/public/javascripts")
     end
   end
   
   task :install_layouts => :environment do
-    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank_engine/assets/layouts") do
+    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank-engine/assets/layouts") do
       FileUtils.copy("application.iphone.erb", "#{RAILS_ROOT}/app/views/layouts")
     end
   end
   
   task :install_stylesheets => :environment do
-    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank_engine/assets/stylesheets") do
+    Dir.chdir("#{RAILS_ROOT}/vendor/plugins/tank-engine/assets/stylesheets") do
       FileUtils.copy("tank_engine.css", "#{RAILS_ROOT}/public/stylesheets")
     end
   end
